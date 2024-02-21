@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter.filedialog import askopenfilename, asksaveasfilename
 
+#function to open file
 def open_file():
     #opening a file for editing
     file = askopenfilename(filetypes = [("Text Files" , "*.txt"), ("All Files", "*.*")])
@@ -13,7 +14,7 @@ def open_file():
         text1.insert(tk.END, text)
     window.title(f'Text Editor - {file}')
         
-
+#function to save file
 def save_file():
     #Saving the file to a new file
     file = asksaveasfilename(defaultextension = ".txt", filetypes = [("Text Files" , "*.txt"), ("All Files", "*.*")])
@@ -24,20 +25,21 @@ def save_file():
         output_file.write(text)
     window.title(f'Text Editor - {file}')
     
-
+#Creating window
 window = tk.Tk()
+#Setting title to Text Editor
 window.title("Text Editor")
+#Creating the text widget and storing it in text1 to access and adding it to the window via pack.
 text1 = tk.Text()
 text1.pack(fill = tk.BOTH, side = tk.RIGHT, expand = True)
-frame = tk.Frame(relief = tk.RAISED, bd = 2) #gives the button's a raisen look
-    #frame is used to group widgets, give them padding and border effect using relief.
+#Creating frame to store buttons.
+frame = tk.Frame(relief = tk.RAISED, bd = 2) 
+#Creating a save button and and open button, and then adding them to the window
 btn_save = tk.Button(text = "Save", master = frame, command = save_file )
 btn_save.grid(row = 0, column = 0, padx = 5, pady = 5)
 btn_open = tk.Button(text = "Open", master = frame, command = open_file)
 btn_open.grid(row = 1, column = 0, padx = 5)
 frame.pack()
-    #frame.grid(row = 0, column = 0)
-    #when using grid or pack, remember you can't use the other within the same block being managed by the other
     
 window.mainloop()
 
